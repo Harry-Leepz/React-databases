@@ -11,7 +11,17 @@ function App() {
       .then((response) => {
         return response.json();
       })
-      .then((data) => setMoviesData(data.results));
+      .then((data) => {
+        const transformData = data.results.map((movie) => {
+          return {
+            id: movie.episode_id,
+            title: movie.title,
+            openingText: movie.opening_crawl,
+            releaseDate: movie.release_date,
+          };
+        });
+        setMoviesData(transformData);
+      });
   };
 
   return (
