@@ -17,3 +17,17 @@ const fetchMoviesHandler = () => {
     });
 };
 ```
+
+## **Making GET requests using Async / Await**
+
+- When using the async / await version, the code is alot leaner and easier to read but is dependant on the async / await keywords.
+- We use the async keywon to let JavaScript know this is an asynchronous function.
+- We use the await keyword when resolving promises and waiting for responses.
+
+```
+const fetchMoviesHandler = async () => {
+    const response = await fetch("https://swapi.dev/api/films/");
+    const data = await response.json();
+    setMoviesData(data);
+  };
+```
