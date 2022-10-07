@@ -5,29 +5,11 @@ import "./App.css";
 
 function App() {
   const [moviesData, setMoviesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // USING VANILLA JS - FETCH API
-  // const fetchMoviesHandler = () => {
-  //   fetch("https://swapi.dev/api/films/")
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       const transformData = data.results.map((movie) => {
-  //         return {
-  //           id: movie.episode_id,
-  //           title: movie.title,
-  //           openingText: movie.opening_crawl,
-  //           releaseDate: movie.release_date,
-  //         };
-  //       });
-  //       setMoviesData(transformData);
-  //     });
-  // };
-
-  // ASYNC / AWAIT
   const fetchMoviesHandler = async () => {
-    const response = await fetch("https://swapi.dev/api/films/");
+    setIsLoading(true);
+    const response = await fetch("https://swapi.py4e.com/api/films/");
     const data = await response.json();
 
     const transformData = data.results.map((movie) => {
@@ -39,6 +21,7 @@ function App() {
       };
     });
     setMoviesData(transformData);
+    setIsLoading(false);
   };
 
   return (
@@ -47,7 +30,8 @@ function App() {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={moviesData} />
+        {!isLoading && <MoviesList movies={moviesData} />}
+        {isLoading && <p>Loading...</p>}
       </section>
     </React.Fragment>
   );
