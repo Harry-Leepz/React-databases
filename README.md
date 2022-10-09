@@ -31,3 +31,46 @@ const fetchMoviesHandler = async () => {
     setMoviesData(data);
   };
 ```
+
+---
+
+# **Handling Errors when making Http requests**
+
+## Handling errors in Vanilla JS
+
+- We can add a catch block, to catch any errors.
+
+```
+const fetchMoviesHandler = () => {
+  fetch("https://swapi.dev/api/films/")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      setMoviesData(data);
+    });
+    .catch((error) => {
+      console.log(error)
+    })
+};
+```
+
+## Handling errors using Async / Await
+
+- In this example we are creating a custom error message, when the response IS NOT ok.
+- When using Async / Await, always use try and catch blocks to catch errors.
+
+```
+try {
+  const response = await fetch("https://swapi.py4e.com/api/films/");
+  if (!response.ok) {
+    throw new Error(
+      "Something went wrong here! There was ann issue with the request!"
+    );
+  }
+  const data = await response.json();
+  console.log(data)
+} catch (error) {
+    setError(error.message);
+}
+```
