@@ -36,7 +36,7 @@ const fetchMoviesHandler = async () => {
 
 # **Handling Errors when making Http requests**
 
-## Handling errors in Vanilla JS
+## **Handling errors in Vanilla JS**
 
 - We can add a catch block, to catch any errors.
 
@@ -55,7 +55,7 @@ const fetchMoviesHandler = () => {
 };
 ```
 
-## Handling errors using Async / Await
+## **Handling errors using Async / Await**
 
 - In this example we are creating a custom error message, when the response IS NOT ok.
 - When using Async / Await, always use try and catch blocks to catch errors.
